@@ -1,9 +1,10 @@
 let express = require("express");
-var app = express();
 let mongoose = require("mongoose");
 let path = require("path");
+var indexRouter = require("./routes/index");
+var booksRouter = require("./routes/books");
+var app = express();
 
-//connect to Db
 mongoose.connect(
   "mongodb://127.0.0.1:27017/school",
   { useUnifiedTopology: true, useNewUrlParser: true },
@@ -12,20 +13,16 @@ mongoose.connect(
   }
 );
 
-//ejs engine setup
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-//middlewares
-//routes
-app.get("/", (req, res) => {
-  var sports = ["cricket", "football", "volleyball"];
-  res.render("index", { sports: sports });
-});
-//error
+
+app.use("/", indexRouter);
+app.use("/books", booksRouter);
+
 app.use((req, res, next) => {
   res.send(`404 : Page not found ...`);
 });
-//listener
+
 app.listen(4000, () => {
   console.log(`Connected to server 4000 ...`);
 });
