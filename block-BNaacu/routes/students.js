@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
   res.render("students", { list: ["ankit", "suraj", "prashant", "ravi"] });
 });
 router.get("/new", (req, res) => {
-  res.send("Student Form");
+  res.render("studentForm");
 });
 router.get("/:id", (req, res) => {
   res.render("studentDetail", {
@@ -15,7 +15,8 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  res.send("Create a Student");
+  res.send(req.body);
+  //   res.send("Create a Student");
 });
 
 module.exports = router;
