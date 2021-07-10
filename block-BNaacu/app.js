@@ -17,6 +17,8 @@ mongoose.connect(
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(express.urlencoded({ extended: false }));
+
 app.use("/", indexRouter);
 app.use("/books", booksRouter);
 app.use("/students", studentRoute);
