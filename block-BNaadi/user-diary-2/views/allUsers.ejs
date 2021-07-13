@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/users/new"><button>Create New User!</button></a>
+    <ul style="list-style: none">
+      <% users.forEach((user, id)=>{ %>
+      <li>
+        <div>
+          <h1><%= id+1%>) <%= user.name%></h1>
+          <h2><%= user.email%></h2>
+        </div>
+        <div>
+          <a href="/users/<%= user._id%>"><button>More</button></a>
+          <a href="/users/<%= user._id%>/edit"><button>Edit</button></a>
+          <a href="/users/<%= user._id%>/delete"><button>Delete</button></a>
+        </div>
+      </li>
+      <%})%>
+    </ul>
+  </body>
+</html>
